@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package p2lab3_gabrielzelaya.Vehiculo;
 
-/**
- *
- * @author gabri
- */
-public class Bici {
+public class Bici extends Vehiculo{
+    
+    private String descripcion;
+    private double radius;
+    private String tipo;
+    
     
 }

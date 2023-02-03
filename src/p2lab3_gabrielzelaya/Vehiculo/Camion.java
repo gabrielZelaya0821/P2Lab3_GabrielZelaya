@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package p2lab3_gabrielzelaya.Vehiculo;
 
-/**
- *
- * @author gabri
- */
-public class Camion {
+public class Camion extends Vehiculo{
     
+    private double volumenMax;
+    private double altura;
+    private boolean retroexcavadora;
 }
