@@ -5,6 +5,7 @@ public class Carro extends Vehiculo{
     private int puertas;
     private String descripcionMotor;
     private double velocidadMax;
+    private double precio = 7000;
 
     public Carro(int puertas, String descripcionMotor, double velocidadMax, String color, String marca, String modelo, int año, int numLlantas) {
         super(color, marca, modelo, año, numLlantas);
@@ -35,6 +36,14 @@ public class Carro extends Vehiculo{
 
     public double getVelocidadMax() {
         return velocidadMax;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
        
 }

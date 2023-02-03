@@ -19,11 +19,11 @@ public class P2Lab3_GabrielZelaya {
     public static ArrayList<Cliente> clientes = new ArrayList<>();
     public static ArrayList<Vehiculo> vehiculos = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         menu();
     }
     
-    public static void menu(){
+    public static void menu() throws Exception{
         int menu;
         do{
             System.out.println("(1)CrudConcesionaria \n(2)CrudClientes \n(3)CrudVehiculos \n(4)Compra/Venta \n(5)Salir");
@@ -32,6 +32,13 @@ public class P2Lab3_GabrielZelaya {
                 case 1 -> crudConcesionaria();
                 case 2 -> crudClientes();
                 case 3 -> crudVehiculos();
+                case 4 ->{
+                    System.out.println("(1)Comprar (2)Vender");
+                    int decision = num.nextInt();
+                    switch (decision){
+                        case 1 -> comprarVehiculo();
+                    }
+                }
                 case 5 -> System.out.println("Saliendo del menú");
                 default ->{
                     System.out.println("Número no es válido");
@@ -39,6 +46,64 @@ public class P2Lab3_GabrielZelaya {
                 }
             }
         }while(menu<6);
+    }
+    
+    public static Cliente clienteAccede() throws Exception {
+        for (Cliente cliente : clientes) {
+            System.out.println(clientes.indexOf(cliente)+"-> "+cliente);
+        }
+        System.out.println("¿Que cliente desea comprar/vender?");
+        int cliente = num.nextInt();
+        if (cliente >= 0 && cliente < clientes.size()){
+            return clientes.get(cliente);
+        }else{
+            throw new Exception("Cliente no encontrado");
+        }
+    }
+    
+    public static double definirCosto(Vehiculo vehiculo){
+        double costo = 0;
+        if (vehiculo instanceof Bici bici){
+            costo = bici.getPrecio();
+        }else if (vehiculo instanceof Bus bus){
+            costo = bus.getPrecio();
+        }else if (vehiculo instanceof Camion camion){
+            costo = camion.getPrecio();
+        }else if (vehiculo instanceof Carro carro){
+            costo = carro.getPrecio();
+        }else if (vehiculo instanceof Moto moto){
+            costo = moto.getPrecio();
+        }
+        return costo;
+    }
+    
+    public static void comprarVehiculo() throws Exception{
+        listarConcesionaria();
+        Cliente cliente = clienteAccede();
+        System.out.println("¿De cuál concesoria desea comprar el carro");
+        int opcion = num.nextInt();
+        if (opcion >= 0 && opcion < concesionarias.size()){
+            for (Vehiculo vehiculo : concesionarias.get(opcion).getVehiculos()) {
+                System.out.println(concesionarias.get(opcion).
+                        getVehiculos().indexOf(vehiculo)+"-> "+vehiculo);
+            }
+            System.out.println("¿Qué vehiculo desea comprar?");
+            int compra = num.nextInt();
+            if (compra >= 0 && compra < concesionarias.get(opcion).getVehiculos().size()){
+                double costo = definirCosto(concesionarias.get(opcion).getVehiculos().get(compra));
+                double costoFinal;
+                if(cliente.getSaldo() >= costo){
+                    costoFinal = cliente.getSaldo() - costo;
+                    cliente.setSaldo(costoFinal);
+                    concesionarias.get(opcion).getClientes().add(cliente);
+                }else{
+                    System.out.println("No tiene suficiente saldo");
+                }
+                
+            }else{
+                System.out.println("Número no es válido");
+            }
+        }
     }
     
     public static void crudConcesionaria(){

@@ -4,6 +4,7 @@ public class Bus extends Vehiculo{
     
     private String tipo;
     private int pasajeros;
+    private double precio = 2500;
 
     public Bus(String color, String marca, String modelo, int año, int numLlantas,int pasajeros) {
         super(color, marca, modelo, año, numLlantas);
@@ -23,5 +24,17 @@ public class Bus extends Vehiculo{
         this.pasajeros = pasajeros;
         setTipo(pasajeros);
     }
-    
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getPasajeros() {
+        return pasajeros;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
 }

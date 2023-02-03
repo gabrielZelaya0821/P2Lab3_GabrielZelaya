@@ -5,6 +5,7 @@ public class Camion extends Vehiculo{
     private double volumenMax;
     private double altura;
     private boolean retroexcavadora;
+    private double precio = 5000;
 
     public Camion(double volumenMax, double altura, boolean retroexcavadora, String color, String marca, String modelo, int año, int numLlantas) {
         super(color, marca, modelo, año, numLlantas);
@@ -24,6 +25,24 @@ public class Camion extends Vehiculo{
     public void setRetroexcavadora(boolean retroexcavadora) {
         this.retroexcavadora = retroexcavadora;
     }
-    
-    
+
+    public double getVolumenMax() {
+        return volumenMax;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public boolean isRetroexcavadora() {
+        return retroexcavadora;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }

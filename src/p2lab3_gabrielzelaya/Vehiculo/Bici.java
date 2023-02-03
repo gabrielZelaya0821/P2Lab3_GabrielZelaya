@@ -5,6 +5,7 @@ public class Bici extends Vehiculo{
     private String descripcion;
     private double radius;
     private String tipo;
+    private double precio = 500;
 
     public Bici(String descripcion, double radius, String tipo, String color, String marca, String modelo, int año, int numLlantas) {
         super(color, marca, modelo, año, numLlantas);
@@ -24,7 +25,25 @@ public class Bici extends Vehiculo{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
-    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 
 }
