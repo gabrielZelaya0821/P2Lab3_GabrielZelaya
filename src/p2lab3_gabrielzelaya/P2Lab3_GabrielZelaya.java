@@ -20,11 +20,25 @@ public class P2Lab3_GabrielZelaya {
     public static ArrayList<Vehiculo> vehiculos = new ArrayList<>();
 
     public static void main(String[] args) {
-        
+        menu();
     }
     
     public static void menu(){
-        
+        int menu;
+        do{
+            System.out.println("(1)CrudConcesionaria \n(2)CrudClientes \n(3)CrudVehiculos \n(4)Compra/Venta \n(5)Salir");
+            menu = num.nextInt();
+            switch (menu){
+                case 1 -> crudConcesionaria();
+                case 2 -> crudClientes();
+                case 3 -> crudVehiculos();
+                case 5 -> System.out.println("Saliendo del menú");
+                default ->{
+                    System.out.println("Número no es válido");
+                    menu();
+                }
+            }
+        }while(menu<6);
     }
     
     public static void crudConcesionaria(){
@@ -141,8 +155,9 @@ public class P2Lab3_GabrielZelaya {
         int menu = num.nextInt();
         switch (menu){
             case 1 -> createCliente();
-            case 2 -> deleteCLiente();
-            case 3 -> System.out.println("Saliendo al menú...");
+            case 2 -> updateVehiculos();
+            case 3 -> deleteCLiente();
+            case 4 -> System.out.println("Saliendo al menú...");
             default -> {
                 System.out.println("Número inválido");
                 crudClientes();
@@ -194,7 +209,14 @@ public class P2Lab3_GabrielZelaya {
                     }
                 }
                 Bici bici = new Bici(descripcion, radius, tipo, color, marca, modelo, año, 2);
-                vehiculos.add(bici);
+                listarConcesionaria();
+                int posicion = num.nextInt();
+                if (posicion >= 0 && posicion < concesionarias.size()){
+                    concesionarias.get(posicion).getVehiculos().add(bici);
+                }else{
+                    System.out.println("Número no es válido");
+                }
+                System.out.println("Ingrese a cuál concecionaria la enviara: ");
             }
             case 2 ->{
                 System.out.println("Ingrese el desplazamiento del motor: ");
@@ -211,7 +233,14 @@ public class P2Lab3_GabrielZelaya {
                     }
                 }
                 Moto moto = new Moto(desplazamiento, electrica, color, marca, modelo, año, 2);
-                vehiculos.add(moto);
+                listarConcesionaria();
+                int posicion = num.nextInt();
+                if (posicion >= 0 && posicion < concesionarias.size()){
+                    concesionarias.get(posicion).getVehiculos().add(moto);
+                }else{
+                    System.out.println("Número no es válido");
+                }
+                System.out.println("Ingrese a cuál concecionaria la enviara: ");
             }
         }
     }
@@ -228,13 +257,27 @@ public class P2Lab3_GabrielZelaya {
                 System.out.println("Ingrese la velocidad máxima: ");
                 double velocidadMax = num.nextDouble();
                 Carro carro = new Carro(puertas, descripcionMotor, velocidadMax, color, marca, modelo, año, 4);
-                vehiculos.add(carro);
+                listarConcesionaria();
+                int posicion = num.nextInt();
+                if (posicion >= 0 && posicion < concesionarias.size()){
+                    concesionarias.get(posicion).getVehiculos().add(carro);
+                }else{
+                    System.out.println("Número no es válido");
+                }
+                System.out.println("Ingrese a cuál concecionaria la enviara: ");
             }
             case 2 ->{
                 System.out.println("Ingrese la capacidad máxima de pasajeros: ");
                 int pasajeros = num.nextInt();
                 Bus bus = new Bus(color, marca, modelo, año, 4, pasajeros);
-                vehiculos.add(bus);
+                listarConcesionaria();
+                int posicion = num.nextInt();
+                if (posicion >= 0 && posicion < concesionarias.size()){
+                    concesionarias.get(posicion).getVehiculos().add(bus);
+                }else{
+                    System.out.println("Número no es válido");
+                }
+                System.out.println("Ingrese a cuál concecionaria la enviara: ");
             }
             case 3 ->{
                 System.out.println("Ingrese el volumen máximo: ");
@@ -253,7 +296,14 @@ public class P2Lab3_GabrielZelaya {
                     }
                 }
                 Camion camion = new Camion(volumenMax, altura, retroExcavadora, color, marca, modelo, año, opcion);
-                vehiculos.add(camion);
+                listarConcesionaria();
+                int posicion = num.nextInt();
+                if (posicion >= 0 && posicion < concesionarias.size()){
+                    concesionarias.get(posicion).getVehiculos().add(camion);
+                }else{
+                    System.out.println("Número no es válido");
+                }
+                System.out.println("Ingrese a cuál concecionaria la enviara: ");
             }
         }
         
