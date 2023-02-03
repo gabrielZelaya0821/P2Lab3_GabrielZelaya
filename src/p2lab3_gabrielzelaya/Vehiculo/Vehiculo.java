@@ -2,11 +2,11 @@ package p2lab3_gabrielzelaya.Vehiculo;
 
 public class Vehiculo {
     
-    private String color;
-    private String marca;
-    private String modelo;
-    private int año;
-    private int numLlantas;
+    protected String color;
+    protected String marca;
+    protected String modelo;
+    protected int año;
+    protected int numLlantas;
 
     public Vehiculo(String color, String marca, String modelo, int año, int numLlantas) {
         this.color = color;

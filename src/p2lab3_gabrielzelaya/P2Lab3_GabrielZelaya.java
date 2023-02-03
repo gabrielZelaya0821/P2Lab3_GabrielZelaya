@@ -147,6 +147,46 @@ public class P2Lab3_GabrielZelaya {
     
     public static void createVehiculo(){
         System.out.println("-----Crear-----");
-        
+        System.out.println("Ingrese el color del vehículo: ");
+        String color = str.nextLine();
+        System.out.println("Ingrese la marca del vehículo: ");
+        String marca = str.nextLine();
+        System.out.println("Ingrese el modelo del vehículo: ");
+        String modelo = str.nextLine();
+        System.out.println("Ingrese el año de creación: ");
+        int año = num.nextInt();
+        System.out.println("Ingrese el número de llantas: ");
+        int llantas = num.nextInt();
+        switch (llantas){
+            case 2 ->{
+                
+            }
+        }
+    }
+    
+    public static void crearVehiculoDosLlantas(){
+        System.out.println("(1)Bici (2)Moto");
+        int opcion = num.nextInt();
+        switch (opcion){
+            case 1 -> {
+                System.out.println("Ingrese una descripción: ");
+                String descripcion = str.nextLine();
+                System.out.println("Ingrese el radio de la llanta: ");
+                double radius = num.nextDouble();
+                System.out.println("Ingrese el tipo de la bici: ");
+                System.out.println("(1)BMX (2)Calle");
+                int tipoBici = num.nextInt();
+                String tipo = "";
+                switch (tipoBici){
+                    case 1 -> tipo = "BMX";
+                    case 2 -> tipo = "De calle";
+                    default ->{
+                        System.out.println("Número inválido");
+                        crearVehiculoDosLlantas();
+                    }
+                }
+                Bici bici = new Bici()
+            }
+        }
     }
 }
