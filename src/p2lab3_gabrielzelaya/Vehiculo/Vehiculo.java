@@ -1,16 +1,14 @@
 package p2lab3_gabrielzelaya.Vehiculo;
 
-import java.awt.Color;
-
 public class Vehiculo {
     
-    private Color color;
+    private String color;
     private String marca;
     private String modelo;
     private int año;
     private int numLlantas;
 
-    public Vehiculo(Color color, String marca, String modelo, int año, int numLlantas) {
+    public Vehiculo(String color, String marca, String modelo, int año, int numLlantas) {
         this.color = color;
         this.marca = marca;
         this.modelo = modelo;
@@ -21,7 +19,7 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
@@ -41,7 +39,7 @@ public class Vehiculo {
         return numLlantas;
     }
 
-    public void setColor(Color color) {
+    public void setColor(String color) {
         this.color = color;
     }
 

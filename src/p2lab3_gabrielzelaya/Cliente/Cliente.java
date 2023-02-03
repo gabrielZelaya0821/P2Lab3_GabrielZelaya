@@ -8,10 +8,10 @@ public class Cliente {
     private int clientId;
     private String nombre;
     private ArrayList<Vehiculo> vehiculos = new ArrayList<>();
-    private int saldo;
+    private double saldo;
 
-    public Cliente(int clientId, String nombre, int saldo) {
-        this.clientId = clientId;
+    public Cliente(String nombre, double saldo) {
+        this.clientId++;
         this.nombre = nombre;
         this.saldo = saldo;
     }
@@ -31,7 +31,7 @@ public class Cliente {
         return vehiculos;
     }
 
-    public int getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
@@ -47,7 +47,7 @@ public class Cliente {
         this.vehiculos = vehiculos;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 }
