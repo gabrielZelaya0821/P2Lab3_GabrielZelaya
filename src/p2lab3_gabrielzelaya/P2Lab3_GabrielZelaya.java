@@ -48,6 +48,40 @@ public class P2Lab3_GabrielZelaya {
         }while(menu<6);
     }
     
+    public static void venderVehiculo(){
+        for (Cliente cliente : clientes) {
+            System.out.println(clientes.indexOf(cliente)+"-> "+cliente);
+        }
+        int decision = num.nextInt();
+        if (decision >= 0 && decision < clientes.size()){
+            for (Vehiculo vehiculo : clientes.get(decision).getVehiculos()) {
+                System.out.println(clientes.indexOf(vehiculo)+"-> "+vehiculo);
+            }
+            System.out.println("¿Cuál desea vender?");
+            int opcion = num.nextInt();
+            if (opcion >= 0 && opcion < clientes.get(decision).getVehiculos().size()){
+                clientes.get(decision).getVehiculos().remove(opcion);
+                double saldoCliente = clientes.get(decision).getSaldo();
+                double precio = 0;
+                Cliente cliente = clientes.get(decision);
+                if(cliente.getVehiculos().get(opcion) instanceof Carro carro){
+                    precio = carro.getPrecio();
+                }else if (cliente.getVehiculos().get(opcion) instanceof Bus bus){
+                    precio = bus.getPrecio();
+                }else if (cliente.getVehiculos().get(opcion) instanceof Bici bici){
+                    precio = bici.getPrecio();
+                }else if (cliente.getVehiculos().get(opcion) instanceof Camion camion){
+                    precio = camion.getPrecio();
+                }else if (cliente.getVehiculos().get(opcion) instanceof Moto moto){
+                    precio = moto.getPrecio();
+                }
+                cliente.setSaldo(saldoCliente + precio); 
+            }else{
+                System.out.println("Número no es válido");
+            }
+        }
+    }
+    
     public static Cliente clienteAccede() throws Exception {
         for (Cliente cliente : clientes) {
             System.out.println(clientes.indexOf(cliente)+"-> "+cliente);
@@ -95,6 +129,7 @@ public class P2Lab3_GabrielZelaya {
                 if(cliente.getSaldo() >= costo){
                     costoFinal = cliente.getSaldo() - costo;
                     cliente.setSaldo(costoFinal);
+                    cliente.getVehiculos().add(concesionarias.get(opcion).getVehiculos().get(compra));
                     concesionarias.get(opcion).getClientes().add(cliente);
                 }else{
                     System.out.println("No tiene suficiente saldo");
