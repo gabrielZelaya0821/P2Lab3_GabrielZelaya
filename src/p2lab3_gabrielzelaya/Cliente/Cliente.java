@@ -50,4 +50,9 @@ public class Cliente {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "clientId=" + clientId + ", nombre=" + nombre + ", vehiculos=" + vehiculos + ", saldo=" + saldo + '}';
+    }
 }

@@ -37,4 +37,9 @@ public class Bus extends Vehiculo{
         return precio;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+"Bus{" + "tipo=" + tipo + ", pasajeros=" + pasajeros + ", precio=" + precio + '}';
+    }
+
 }

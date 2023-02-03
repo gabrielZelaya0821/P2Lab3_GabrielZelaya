@@ -35,5 +35,10 @@ public class Moto extends Vehiculo{
     public double getPrecio() {
         return precio;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Moto{" + "desplazamiento=" + desplazamiento + ", electrica=" + electrica + ", precio=" + precio + '}';
+    }
     
 }

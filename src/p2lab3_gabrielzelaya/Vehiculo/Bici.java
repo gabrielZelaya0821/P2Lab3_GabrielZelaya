@@ -46,4 +46,9 @@ public class Bici extends Vehiculo{
         this.precio = precio;
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+"Bici{" + "descripcion=" + descripcion + ", radius=" + radius + ", tipo=" + tipo + ", precio=" + precio + '}';
+    }
+
 }

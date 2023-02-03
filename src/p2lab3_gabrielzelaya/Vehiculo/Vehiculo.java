@@ -58,4 +58,9 @@ public class Vehiculo {
     public void setNumLlantas(int numLlantas) {
         this.numLlantas = numLlantas;
     }    
+
+    @Override
+    public String toString() {
+        return "Vehiculo{" + "color=" + color + ", marca=" + marca + ", modelo=" + modelo + ", a\u00f1o=" + año + ", numLlantas=" + numLlantas + '}';
+    }
 }

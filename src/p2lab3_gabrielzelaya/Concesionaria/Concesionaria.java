@@ -70,4 +70,9 @@ public class Concesionaria {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+    @Override
+    public String toString() {
+        return "Concesionaria{" + "nombre=" + nombre + ", empresaId=" + empresaId + ", direccion=" + direccion + ", vehiculos=" + vehiculos + ", clientes=" + clientes + ", saldo=" + saldo + '}';
+    }
 }

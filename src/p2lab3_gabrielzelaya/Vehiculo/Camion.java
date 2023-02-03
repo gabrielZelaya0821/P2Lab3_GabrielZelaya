@@ -45,4 +45,10 @@ public class Camion extends Vehiculo{
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Camion{" + "volumenMax=" + volumenMax + ", altura=" + altura + ", retroexcavadora=" + retroexcavadora + ", precio=" + precio + '}';
+    }
+    
 }

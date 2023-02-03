@@ -45,5 +45,10 @@ public class Carro extends Vehiculo{
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"Carro{" + "puertas=" + puertas + ", descripcionMotor=" + descripcionMotor + ", velocidadMax=" + velocidadMax + ", precio=" + precio + '}';
+    }
        
 }
