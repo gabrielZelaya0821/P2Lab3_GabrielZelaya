@@ -37,6 +37,10 @@ public class P2Lab3_GabrielZelaya {
                     int decision = num.nextInt();
                     switch (decision){
                         case 1 -> comprarVehiculo();
+                        case 2 -> venderVehiculo();
+                        default ->{
+                            System.out.println("Número inválido");
+                        }
                     }
                 }
                 case 5 -> System.out.println("Saliendo del menú");
