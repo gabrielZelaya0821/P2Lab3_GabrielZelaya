@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import p2lab3_gabrielzelaya.Cliente.Cliente;
 import p2lab3_gabrielzelaya.Concesionaria.Concesionaria;
+import p2lab3_gabrielzelaya.Vehiculo.Bici;
+import p2lab3_gabrielzelaya.Vehiculo.Bus;
+import p2lab3_gabrielzelaya.Vehiculo.Camion;
+import p2lab3_gabrielzelaya.Vehiculo.Carro;
+import p2lab3_gabrielzelaya.Vehiculo.Moto;
 import p2lab3_gabrielzelaya.Vehiculo.Vehiculo;
 
 public class P2Lab3_GabrielZelaya {
@@ -158,13 +163,16 @@ public class P2Lab3_GabrielZelaya {
         System.out.println("Ingrese el número de llantas: ");
         int llantas = num.nextInt();
         switch (llantas){
-            case 2 ->{
-                
+            case 2 -> crearVehiculoDosLlantas(color,marca,modelo,año);
+            case 4 -> crearVehiculoCuatroLlantas(color, marca, modelo, año);
+            default -> {
+                System.out.println("Número no es válido");
+                createVehiculo();
             }
         }
     }
     
-    public static void crearVehiculoDosLlantas(){
+    public static void crearVehiculoDosLlantas(String color,String marca,String modelo,int año){
         System.out.println("(1)Bici (2)Moto");
         int opcion = num.nextInt();
         switch (opcion){
@@ -182,10 +190,229 @@ public class P2Lab3_GabrielZelaya {
                     case 2 -> tipo = "De calle";
                     default ->{
                         System.out.println("Número inválido");
-                        crearVehiculoDosLlantas();
+                        crearVehiculoDosLlantas(color,marca,modelo,año);
                     }
                 }
-                Bici bici = new Bici()
+                Bici bici = new Bici(descripcion, radius, tipo, color, marca, modelo, año, 2);
+                vehiculos.add(bici);
+            }
+            case 2 ->{
+                System.out.println("Ingrese el desplazamiento del motor: ");
+                String desplazamiento = str.nextLine();
+                System.out.println("¿La moto es electrica? s/n");
+                char opcionMoto = str.nextLine().toLowerCase().charAt(0);
+                boolean electrica = true;
+                switch (opcionMoto){
+                    case 's' -> electrica = true;
+                    case 'n' -> electrica = false;
+                    default ->{
+                        System.out.println("Opción no es válida");
+                        crearVehiculoDosLlantas(color, marca, modelo, año);
+                    }
+                }
+                Moto moto = new Moto(desplazamiento, electrica, color, marca, modelo, año, 2);
+                vehiculos.add(moto);
+            }
+        }
+    }
+    
+    public static void crearVehiculoCuatroLlantas(String color,String marca,String modelo,int año){
+        System.out.println("(1)Carro (2)Bus (3)Camión");
+        int opcion = num.nextInt();
+        switch (opcion){
+            case 1 ->{
+                System.out.println("Ingrese el número de puertas: ");
+                int puertas = num.nextInt();
+                System.out.println("Ingrese la descripción del motor");
+                String descripcionMotor = str.nextLine();
+                System.out.println("Ingrese la velocidad máxima: ");
+                double velocidadMax = num.nextDouble();
+                Carro carro = new Carro(puertas, descripcionMotor, velocidadMax, color, marca, modelo, año, 4);
+                vehiculos.add(carro);
+            }
+            case 2 ->{
+                System.out.println("Ingrese la capacidad máxima de pasajeros: ");
+                int pasajeros = num.nextInt();
+                Bus bus = new Bus(color, marca, modelo, año, 4, pasajeros);
+                vehiculos.add(bus);
+            }
+            case 3 ->{
+                System.out.println("Ingrese el volumen máximo: ");
+                double volumenMax = num.nextDouble();
+                System.out.println("Ingrese la altura: ");
+                double altura = num.nextDouble();
+                System.out.println("¿Tiene retroexcavadora? s/n");
+                char opcionRetro = str.nextLine().toLowerCase().charAt(0);
+                boolean retroExcavadora = false;
+                switch (opcionRetro){
+                    case 's' -> retroExcavadora = true;
+                    case 'n' -> retroExcavadora = false;
+                    default ->{
+                        System.out.println("Número no es válida");
+                        crearVehiculoCuatroLlantas(color, marca, modelo, año);
+                    }
+                }
+                Camion camion = new Camion(volumenMax, altura, retroExcavadora, color, marca, modelo, año, opcion);
+                vehiculos.add(camion);
+            }
+        }
+        
+        
+    }
+
+    public static void listarVehiculos(){
+        for (Vehiculo vehiculo : vehiculos) {
+            System.out.println(vehiculos.indexOf(vehiculo)+"-> "+vehiculo);
+        }
+    }
+    
+    public static void updateVehiculos(){
+        System.out.println("-----Modificar-----");
+        listarVehiculos();
+        System.out.println("¿Qué desea modificar?");
+        int opcion = num.nextInt();
+        if (opcion >= 0 && opcion < vehiculos.size()){
+            if (vehiculos.get(opcion) instanceof Bici bici){
+                updateBici(bici);
+            }else if (vehiculos.get(opcion) instanceof Bus bus){
+                updateBus(bus);
+            }else if (vehiculos.get(opcion) instanceof Camion camion){
+                updateCamion(camion);
+            }else if (vehiculos.get(opcion) instanceof Carro carro){
+                updateCarro(carro);
+            }else if (vehiculos.get(opcion) instanceof Moto moto){
+                updateMoto(moto);
+            }
+        }
+    }
+    
+    public static void updateBici(Bici bici){
+        System.out.println("(1)Descripcion (2)Radio (3)Tipo");
+        int opcion = num.nextInt();
+        switch (opcion){
+            case 1 ->{
+                System.out.println("Ingrese una descripción: ");
+                String descripcion = str.nextLine();
+                bici.setDescripcion(descripcion);
+            }
+            case 2 ->{
+                System.out.println("Ingrese el radio de las llantas: ");
+                double radius = num.nextDouble();
+                bici.setRadius(radius);
+            }
+            case 3 ->{
+                System.out.println("Ingrese el tipo de la bici: ");
+                System.out.println("(1)BMX (2)Calle");
+                int tipoBici = num.nextInt();
+                String tipo = "";
+                switch (tipoBici){
+                    case 1 -> tipo = "BMX";
+                    case 2 -> tipo = "De calle";
+                    default ->{
+                        System.out.println("Número inválido");
+                        updateBici(bici);
+                    }
+                }
+                bici.setTipo(tipo);
+            }
+            default ->{
+                System.out.println("Número no es válido");
+                updateBici(bici);
+            }
+        }
+    }
+
+    public static void updateBus(Bus bus){
+        System.out.println("Ingrese la capacidad máxima de pasajeros: ");
+        int pasajeros = num.nextInt();
+        bus.setPasajeros(pasajeros);
+    }
+    
+    public static void updateCamion(Camion camion){
+        System.out.println("(1)Volumen (2)Altura (3)Retroexcavadora");
+        int opcion = num.nextInt();
+        switch(opcion){
+            case 1 ->{
+                System.out.println("Ingrese el volumen máximo: ");
+                double volumenMax = num.nextDouble();
+                camion.setVolumenMax(volumenMax);
+            }
+            case 2 ->{
+                System.out.println("Ingrese la altura: ");
+                double altura = num.nextDouble();
+                camion.setAltura(altura);
+            }
+            case 3 ->{
+                System.out.println("¿Tiene retroexcavadora? s/n");
+                char opcionRetro = str.nextLine().toLowerCase().charAt(0);
+                boolean retroExcavadora = false;
+                switch (opcionRetro){
+                    case 's' -> retroExcavadora = true;
+                    case 'n' -> retroExcavadora = false;
+                    default ->{
+                        System.out.println("Número no es válida");
+                    }
+                }
+                camion.setRetroexcavadora(retroExcavadora);
+            }
+            default ->{
+                System.out.println("Número no es válido");
+                updateCamion(camion);
+            }
+        }
+    }
+
+    public static void updateCarro(Carro carro){
+        System.out.println("(1)Puertas (2)Descripción (3)Velocidad");
+        int opcion = num.nextInt();
+        switch (opcion){
+            case 1 ->{
+                System.out.println("Ingrese el número de puertas: ");
+                int puertas = num.nextInt();
+                carro.setPuertas(puertas);
+            }
+            case 2 ->{
+                System.out.println("Ingrese la descripción del motor");
+                String descripcionMotor = str.nextLine();
+                carro.setDescripcionMotor(descripcionMotor);
+            }
+            case 3 ->{
+                System.out.println("Ingrese la velocidad máxima: ");
+                double velocidadMax = num.nextDouble();
+                carro.setVelocidadMax(velocidadMax);
+            }
+            default ->{
+                System.out.println("Número no es válido");
+                updateCarro(carro);
+            }
+        }
+    }
+    
+    public static void updateMoto(Moto moto){
+        System.out.println("(1)Desplazamiento (2)Electrica");
+        int opcion = num.nextInt();
+        switch (opcion){
+            case 1 ->{
+                System.out.println("Ingrese el desplazamiento del motor: ");
+                String desplazamiento = str.nextLine();
+                moto.setDesplazamiento(desplazamiento);
+            }
+            case 2 ->{
+                System.out.println("¿La moto es electrica? s/n");
+                char opcionMoto = str.nextLine().toLowerCase().charAt(0);
+                boolean electrica = true;
+                switch (opcionMoto){
+                    case 's' -> electrica = true;
+                    case 'n' -> electrica = false;
+                    default ->{
+                        System.out.println("Opción no es válida");
+                    }
+                }
+                moto.setElectrica(electrica);
+            }
+            default ->{
+                System.out.println("Número no es válido");
+                updateMoto(moto);
             }
         }
     }
